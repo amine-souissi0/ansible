@@ -18,3 +18,11 @@
     - name: Show CPU model
       debug:
         msg: "{{ ansible_processor[1] }}"
+
+    - name: Show all running processes (ps -ef)
+      shell: ps -ef
+      register: ps_output
+
+    - name: Print process list
+      debug:
+        var: ps_output.stdout_lines
